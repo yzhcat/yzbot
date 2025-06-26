@@ -17,10 +17,11 @@ def generate_launch_description():
     robot_name_in_model = 'six_arm'
     package_name = 'mybot_description'
     urdf_name = "originbot_with_rgbd_gazebo_arm.xacro"
-    world_file_path = 'env_competition.world'
-    # world_file_path = 'competition_env.world'
     
-    # world_file_path = 'cloister.world'
+    # world_file_path = 'env_competition.world'
+    # world_file_path = 'competition_env.world'
+    world_file_path = 'cloister.world'
+    
  
     pkg_share = FindPackageShare(package=package_name).find(package_name) 
     urdf_model_path = os.path.join(pkg_share, f'urdf/{urdf_name}')

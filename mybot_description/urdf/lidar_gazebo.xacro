@@ -36,7 +36,6 @@
         <gazebo reference="${prefix}_link">
             <sensor type="ray" name="lidar">
                 <update_rate>20</update_rate>
-                <!-- <visualize>false</visualize> -->
                 <visualize>${gz_visualize}</visualize>
                 <ray>
                     <scan>
