@@ -31,5 +31,12 @@ note:
 moveit 配置时只以臂模型做参考，臂+底盘整体运行 moveit会出现link不匹配的Waring，规划会出错，但是可以执行动作，
 可能需要把合并后的模型注释掉gazebo的部分重新通过moveit_setup_assistant 配置
 
-TODO:
-nav2
+
+启动机械臂moveit和gazebo 底盘+机械臂+传感器仿真+nav2
+ros2 launch mybot gazebo_world.launch.py
+ros2 launch mybot my_moveit_rviz.launch.py
+
+ros2 launch bot_navigation nav_bringup_gazebo.launch.py
+
+导航启动后会显示没有map->odom tf tree
+需要rviz 设置 2D Pose Estimate.
