@@ -16,6 +16,9 @@ sudo apt install ros-humble-moveit-*
 sudo apt install ros-humble-controller-manager -y
 sudo apt install ros-humble-joint-trajectory-controller ros-humble-joint-state-broadcaster -y
 
+sudo apt install ros-humble-nav2-bringup
+sudo apt install ros-humble-nav2*
+
 启动机械臂moveit
 ros2 launch mybot demo.launch.py
 
