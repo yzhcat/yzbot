@@ -36,7 +36,7 @@
         <child link="laser_link" />
     </joint>
 
-    <xacro:lidar prefix="laser" gz_visualize="true" range_min="${robot_radius + safety_margin}" />
+    <xacro:lidar prefix="laser" gz_visualize="false" range_min="${robot_radius + safety_margin}" />
 
     <!-- arm -->
     <xacro:property name="arm_offset_x" value="0.0" />
