@@ -34,13 +34,16 @@
     <xacro:property name="link5_rad" value="0.03" />
     <xacro:property name="link5_len" value="0.06" />
     <!-- link6 -->
-    <xacro:property name="link6_rad" value="0.04" />
+    <xacro:property name="link6_rad" value="0.05" />
     <xacro:property name="link6_len" value="0.02" />
     <!-- 夹爪 长宽高-->
     <!-- gripper -->
     <xacro:property name="gripper_l" value="0.08" />
     <xacro:property name="gripper_w" value="0.01" />
     <xacro:property name="gripper_h" value="0.02" />
+    <!-- 夹爪安装距离参数0~1 -->
+    <xacro:property name="gripper_offset" value="0.75" />
+    <xacro:property name="gripper_offset_h" value="0.002" />
     <!-- 底座长宽高 -->
     <!-- base -->
     <xacro:property name="base_l" value="0.1" />
@@ -269,51 +272,42 @@
     </joint>
 
     <!-- 夹爪 -->
-    <link name="gripper_finger_link1">
-        <visual>
-            <geometry>
-                <box size="${gripper_l} ${gripper_w} ${gripper_h}" />
-            </geometry>
-            <material name="White" />
-        </visual>
-        <collision>
-            <geometry>
-                <box size="${gripper_l} ${gripper_w} ${gripper_h}" />
-            </geometry>
-        </collision>
-        <xacro:inertial_matrix m="0.01" />
-    </link>
+    <xacro:macro name="gripper_finger_link" params="num">
+        <link name="gripper_finger_link${num}">
+            <visual>
+                <geometry>
+                    <box size="${gripper_l} ${gripper_w} ${gripper_h}" />
+                </geometry>
+                <material name="White" />
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${gripper_l} ${gripper_w} ${gripper_h}" />
+                </geometry>
+            </collision>
+            <xacro:inertial_matrix m="0.01" />
+        </link>
+    </xacro:macro>
+
+
+    <xacro:gripper_finger_link num="1" />
+    <xacro:gripper_finger_link num="2" />
 
     <joint name="finger_joint1" type="prismatic">
         <parent link="link6" />
         <child link="gripper_finger_link1" />
-        <origin xyz="0 -${link6_rad *0.6} ${gripper_h}" rpy="0 ${M_PI/2} 0" />
+        <origin xyz="0 -${link6_rad *gripper_offset} ${gripper_h*2+gripper_offset_h}"
+            rpy="0 ${M_PI/2} 0" />
         <axis xyz="0 1 0" />
-        <limit effort="100" lower="0" upper="${link6_rad}" velocity="1.0" />
+        <limit effort="100" lower="0" upper="${link6_rad+gripper_w}" velocity="1.0" />
         <dynamics damping="50" friction="1" />
     </joint>
-
-
-    <link name="gripper_finger_link2">
-        <visual>
-            <geometry>
-                <box size="${gripper_l} ${gripper_w} ${gripper_h}" />
-            </geometry>
-            <material name="White" />
-        </visual>
-        <collision>
-            <geometry>
-                <box size="${gripper_l} ${gripper_w} ${gripper_h}" />
-            </geometry>
-        </collision>
-        <xacro:inertial_matrix m="0.01" />
-    </link>
 
     <joint name="finger_joint2" type="fixed">
         <parent link="link6" />
         <child link="gripper_finger_link2" />
-        <origin xyz="0 ${link6_rad *0.75} ${gripper_h}" rpy="0 ${M_PI/2} 0" />
-
+        <origin xyz="0 ${link6_rad *gripper_offset} ${gripper_h*2+gripper_offset_h}"
+            rpy="0 ${M_PI/2} 0" />
     </joint>
 
     <!-- Grasping frame -->

@@ -30,9 +30,10 @@ from launch.actions import ExecuteProcess
 def generate_launch_description():
     navigation2_dir = get_package_share_directory('bot_navigation')
     nav2_bringup_dir = get_package_share_directory('nav2_bringup')
+    map_yaml_file = "map.yaml"
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
-    map_yaml_path = LaunchConfiguration('map',default=os.path.join(navigation2_dir,'maps','cloister.yaml'))
+    map_yaml_path = LaunchConfiguration('map',default=os.path.join(navigation2_dir,f'maps/{map_yaml_file}'))
     nav2_param_path = LaunchConfiguration('params_file',default=os.path.join(navigation2_dir,'param','originbot_nav2.yaml'))
     slam = LaunchConfiguration('slam', default='False')  
     rviz_config_dir = os.path.join(nav2_bringup_dir,'rviz','nav2_default_view.rviz')

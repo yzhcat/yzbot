@@ -8,15 +8,10 @@
     <xacro:include filename="$(find mybot_description)/urdf/lidar_gazebo.xacro" />
     <xacro:include filename="$(find mybot_description)/urdf/arm_gazebo.xacro" />
 
-    <!-- <xacro:include filename="./large_base_gazebo.xacro" />
-    <xacro:include filename="./rgbd_gazebo.xacro" />
-    <xacro:include filename="./lidar_gazebo.xacro" />
-    <xacro:include filename="./arm_gazebo.xacro" /> -->
-
     <!-- rgbd -->
-    <xacro:property name="rgbd_offset_x" value="${base_length/2+0.02}" />
+    <xacro:property name="rgbd_offset_x" value="0.06" />
     <xacro:property name="rgbd_offset_y" value="0" />
-    <xacro:property name="rgbd_offset_z" value="0.02" />
+    <xacro:property name="rgbd_offset_z" value="-0.03" />
 
     <joint name="rgbd_joint" type="fixed">
         <origin xyz="${-rgbd_offset_x} ${rgbd_offset_y} ${rgbd_offset_z}" rpy="0 ${-M_PI/2} 0" />

@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <robot name="six_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <!-- <xacro:include filename="./large_base.xacro" /> -->
     <xacro:include filename="$(find mybot_description)/urdf/large_base.xacro" />
 
     <!-- Transmission is important to link the joints and the controller -->
