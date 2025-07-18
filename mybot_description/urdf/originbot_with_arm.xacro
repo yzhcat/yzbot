@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot name="six_arm"
+    xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- 无插件 -->
+
+    <xacro:include filename="$(find mybot_description)/urdf/large_base.xacro" />
+    <xacro:include filename="$(find mybot_description)/urdf/arm.xacro" />
+
+    <!-- arm -->
+    <xacro:property name="arm_offset_x" value="0.0" />
+    <xacro:property name="arm_offset_y" value="0" />
+    <xacro:property name="arm_offset_z" value="${base_height/2+0.01}" />
+
+    <joint name="connect_joint" type="fixed">
+        <origin xyz="${arm_offset_x} ${arm_offset_y} ${arm_offset_z}" rpy=" 0 0 0" />
+        <parent link="base_link" />
+        <child link="arm_base_link" />
+    </joint>
+
+</robot>
