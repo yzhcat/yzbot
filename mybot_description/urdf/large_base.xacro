@@ -41,32 +41,15 @@
     </material>
 
     <!-- Macro for inertia matrix -->
-
-    <!-- 球面惯性矩阵 -->
-    <xacro:macro name="sphere_inertial_matrix" params="m r">
-        <inertial>
-            <mass value="${m}" />
-            <inertia ixx="${2*m*r*r/5}" ixy="0" ixz="0" iyy="${2*m*r*r/5}" iyz="0"
-                izz="${2*m*r*r/5}" />
-        </inertial>
-    </xacro:macro>
-
-    <!-- 圆柱惯性矩阵 -->
-    <xacro:macro name="cylinder_inertial_matrix" params="m r h">
-        <inertial>
-            <mass value="${m}" />
-            <inertia ixx="${m*(3*r*r+h*h)/12}" ixy="0" ixz="0" iyy="${m*(3*r*r+h*h)/12}" iyz="0"
-                izz="${m*r*r/2}" />
-        </inertial>
-    </xacro:macro>
-
-    <!-- 方块惯性矩阵 -->
-    <xacro:macro name="box_inertial_matrix" params="m l w h">
-        <inertial>
-            <mass value="${m}" />
-            <inertia ixx="${m*(h*h + l*l)/12}" ixy="0" ixz="0" iyy="${m*(w*w + l*l)/12}" iyz="0"
-                izz="${m*(w*w + h*h)/12}" />
-        </inertial>
+    <!-- 正立方体（边长 s，质量 m）惯性矩阵模板 -->
+    <xacro:macro name="inertial_matrix" params="m s">
+    <xacro:property name="i" value="${m*s*s/6}" />
+    <inertial>
+        <mass value="${m}" />
+        <inertia  ixx="${i}" ixy="0" ixz="0"
+                iyy="${i}" iyz="0"
+                izz="${i}" />
+    </inertial>
     </xacro:macro>
 
     <!-- Macro for robot 轮子 -->
@@ -93,8 +76,7 @@
                     <cylinder radius="${wheel_radius}" length="${wheel_length}" />
                 </geometry>
             </collision>
-            <xacro:cylinder_inertial_matrix m="${wheel_mass}" r="${wheel_radius}"
-                h="${wheel_length}" />
+            <xacro:inertial_matrix m="${wheel_mass}" s="${caster_radius}" />
         </link>
 
     </xacro:macro>
@@ -122,7 +104,7 @@
                     <sphere radius="${caster_radius}" />
                 </geometry>
             </collision>
-            <xacro:sphere_inertial_matrix m="${caster_mass}" r="${caster_radius}" />
+            <!-- <xacro:inertial_matrix m="${caster_mass}" s="${caster_radius}" /> -->
         </link>
 
     </xacro:macro>
@@ -154,11 +136,11 @@
         <!-- <collision>
             <origin xyz=" 0 0 0" rpy="0 0 0" />
             <geometry>
-                <box size="${base_length} ${base_width} ${base_height}" />
+                <box size="${base_length*0.1} ${base_width*0.1} ${base_height*0.1}" />
             </geometry>
         </collision> -->
-        <xacro:box_inertial_matrix m="${base_mass}" l="${base_length}" w="${base_width}"
-            h="${base_height}" />
+        <xacro:inertial_matrix m="${base_mass}" s="${base_height*0.5}" />
+
     </link>
 
 

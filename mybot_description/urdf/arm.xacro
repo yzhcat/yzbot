@@ -58,34 +58,6 @@
         </inertial>
     </xacro:macro>
 
-    <!-- Macro for inertia matrix -->
-    <xacro:macro name="sphere_inertial_matrix" params="m r">
-        <inertial>
-            <mass value="${m}" />
-            <inertia ixx="${2*m*r*r/5}" ixy="0" ixz="0"
-                iyy="${2*m*r*r/5}" iyz="0"
-                izz="${2*m*r*r/5}" />
-        </inertial>
-    </xacro:macro>
-
-    <xacro:macro name="cylinder_inertial_matrix" params="m r h">
-        <inertial>
-            <mass value="${m}" />
-            <inertia ixx="${m*(3*r*r+h*h)/12}" ixy="0" ixz="0"
-                iyy="${m*(3*r*r+h*h)/12}" iyz="0"
-                izz="${m*r*r/2}" />
-        </inertial>
-    </xacro:macro>
-
-    <xacro:macro name="box_inertial_matrix" params="m l w h">
-        <inertial>
-            <mass value="${m}" />
-            <inertia ixx="${m*(h*h + l*l)/12}" ixy="0" ixz="0"
-                iyy="${m*(w*w + l*l)/12}" iyz="0"
-                izz="${m*(w*w + h*h)/12}" />
-        </inertial>
-    </xacro:macro>
-
     <!-- 底座 -->
     <link name="arm_base_link">
         <visual>
@@ -100,7 +72,7 @@
                 <box size="${base_l} ${base_w} ${base_h}" />
             </geometry>
         </collision>
-        <xacro:inertial_matrix m="1" />
+        <xacro:inertial_matrix m="0.1" />
     </link>
 
     <!-- joint1 -->
