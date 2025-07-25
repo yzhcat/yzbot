@@ -7,16 +7,17 @@ from launch_ros.substitutions import FindPackageShare
 from launch.event_handlers import OnProcessExit
  
 import xacro
- 
+
 import re
 def remove_comments(text):
+    """移除XML/HTML注释"""
     pattern = r'<!--(.*?)-->'
     return re.sub(pattern, '', text, flags=re.DOTALL)
  
 def generate_launch_description():
     robot_name_in_model = 'six_arm'
     package_name = 'mybot_description'
-    urdf_name = "arm_gazebo.xacro"
+    urdf_name = "originbot_with_arm_gazebo.xacro"
  
     pkg_share = FindPackageShare(package=package_name).find(package_name) 
     urdf_model_path = os.path.join(pkg_share, f'urdf/{urdf_name}')
@@ -36,7 +37,6 @@ def generate_launch_description():
  
     # 启动了robot_state_publisher节点后，该节点会发布 robot_description 话题，话题内容是模型文件urdf的内容
     # 并且会订阅 /joint_states 话题，获取关节的数据，然后发布tf和tf_static话题.
-    # 这些节点、话题的名称可不可以自定义？
     node_robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -45,10 +45,16 @@ def generate_launch_description():
     )
  
     # Launch the robot, 通过robot_description话题进行模型内容获取从而在gazebo中生成模型
+    spawn_x_val = '0.0'
+    spawn_y_val = '0.0'
+    spawn_z_val = '0.0'
+    spawn_yaw_val = '0.0'
     spawn_entity_cmd = Node(
         package='gazebo_ros', 
         executable='spawn_entity.py',
-        arguments=['-entity', robot_name_in_model,  '-topic', 'robot_description'], output='screen')
+        arguments=['-entity', robot_name_in_model,  
+                   '-topic', 'robot_description',
+                   '-x', spawn_x_val, '-y', spawn_y_val, '-z', spawn_z_val, '-Y', spawn_yaw_val], output='screen')
  
  
     # # Launch the robot, 这个是通过传递文件路径来在gazebo里生成模型.此时要求urdf文件里面没有xacro的语句

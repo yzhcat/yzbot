@@ -1,13 +1,13 @@
 moveit_setup_assistant_config:
   urdf:
     package: mybot_description
-    relative_path: urdf/arm.xacro
+    relative_path: urdf/originbot_with_arm.xacro
   srdf:
     relative_path: config/six_arm.srdf
   package_settings:
     author_name: yzhcat
     author_email: yzhcat@qq.com
-    generated_timestamp: 1750879460
+    generated_timestamp: 1752753036
   control_xacro:
     command:
       - position
