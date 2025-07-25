@@ -3682,7 +3682,7 @@
     <model name='red_cube_1'>
       <pose>-1.5 1.0 0.75 0 0 0</pose>
       <link name='link'>
-        <inertial><mass>0.1</mass></inertial>
+        <inertial><mass>0.005</mass></inertial>
         <collision name='collision'><geometry><box><size>0.03 0.03 0.03</size></box></geometry></collision>
         <visual name='visual'>
           <geometry><box><size>0.03 0.03 0.03</size></box></geometry>
@@ -3694,7 +3694,7 @@
     <model name='red_cube_2'>
       <pose>-1.6 1.0 0.75 0 0 0</pose>
       <link name='link'>
-        <inertial><mass>0.1</mass></inertial>
+        <inertial><mass>0.005</mass></inertial>
         <collision name='collision'><geometry><box><size>0.03 0.03 0.03</size></box></geometry></collision>
         <visual name='visual'>
           <geometry><box><size>0.03 0.03 0.03</size></box></geometry>
@@ -3706,7 +3706,7 @@
     <model name='red_cube_3'>
       <pose>-1.7 1.0 0.75 0 0 0</pose>
       <link name='link'>
-        <inertial><mass>0.1</mass></inertial>
+        <inertial><mass>0.005</mass></inertial>
         <collision name='collision'><geometry><box><size>0.03 0.03 0.03</size></box></geometry></collision>
         <visual name='visual'>
           <geometry><box><size>0.03 0.03 0.03</size></box></geometry>
@@ -3718,7 +3718,7 @@
     <model name='red_cube_4'>
       <pose>-1.8 1.0 0.75 0 0 0</pose>
       <link name='link'>
-        <inertial><mass>0.1</mass></inertial>
+        <inertial><mass>0.005</mass></inertial>
         <collision name='collision'><geometry><box><size>0.03 0.03 0.03</size></box></geometry></collision>
         <visual name='visual'>
           <geometry><box><size>0.03 0.03 0.03</size></box></geometry>
@@ -3730,7 +3730,7 @@
     <model name='red_cube_5'>
       <pose>-1.9 1.0 0.75 0 0 0</pose>
       <link name='link'>
-        <inertial><mass>0.1</mass></inertial>
+        <inertial><mass>0.005</mass></inertial>
         <collision name='collision'><geometry><box><size>0.03 0.03 0.03</size></box></geometry></collision>
         <visual name='visual'>
           <geometry><box><size>0.03 0.03 0.03</size></box></geometry>
@@ -3742,7 +3742,7 @@
     <model name='blue_cube_1'>
       <pose>-1.5 -1.0 0.75 0 0 0</pose>
       <link name='link'>
-        <inertial><mass>0.1</mass></inertial>
+        <inertial><mass>0.005</mass></inertial>
         <collision name='collision'><geometry><box><size>0.03 0.03 0.03</size></box></geometry></collision>
         <visual name='visual'>
           <geometry><box><size>0.03 0.03 0.03</size></box></geometry>
@@ -3754,7 +3754,7 @@
     <model name='blue_cube_2'>
       <pose>-1.6 -1.0 0.75 0 0 0</pose>
       <link name='link'>
-        <inertial><mass>0.1</mass></inertial>
+        <inertial><mass>0.005</mass></inertial>
         <collision name='collision'><geometry><box><size>0.03 0.03 0.03</size></box></geometry></collision>
         <visual name='visual'>
           <geometry><box><size>0.03 0.03 0.03</size></box></geometry>
@@ -3766,7 +3766,7 @@
     <model name='blue_cube_3'>
       <pose>-1.7 -1.0 0.75 0 0 0</pose>
       <link name='link'>
-        <inertial><mass>0.1</mass></inertial>
+        <inertial><mass>0.005</mass></inertial>
         <collision name='collision'><geometry><box><size>0.03 0.03 0.03</size></box></geometry></collision>
         <visual name='visual'>
           <geometry><box><size>0.03 0.03 0.03</size></box></geometry>
@@ -3778,7 +3778,7 @@
     <model name='blue_cube_4'>
       <pose>-1.8 -1.0 0.75 0 0 0</pose>
       <link name='link'>
-        <inertial><mass>0.1</mass></inertial>
+        <inertial><mass>0.005</mass></inertial>
         <collision name='collision'><geometry><box><size>0.03 0.03 0.03</size></box></geometry></collision>
         <visual name='visual'>
           <geometry><box><size>0.03 0.03 0.03</size></box></geometry>
@@ -3790,7 +3790,7 @@
     <model name='blue_cube_5'>
       <pose>-1.9 -1.0 0.75 0 0 0</pose>
       <link name='link'>
-        <inertial><mass>0.1</mass></inertial>
+        <inertial><mass>0.005</mass></inertial>
         <collision name='collision'><geometry><box><size>0.03 0.03 0.03</size></box></geometry></collision>
         <visual name='visual'>
           <geometry><box><size>0.03 0.03 0.03</size></box></geometry>

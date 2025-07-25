@@ -16,6 +16,7 @@
 
     <!-- 常量 -->
     <xacro:property name="M_PI" value="3.1415926" />
+    <xacro:property name="P" value="600.0" />
 
     <!-- 连杆半径和长度 -->
     <!-- link1 -->
@@ -51,12 +52,30 @@
     <xacro:property name="base_h" value="0.04" />
 
     <!-- 惯性矩阵 -->
-    <xacro:macro name="inertial_matrix" params="m">
+    <!-- <xacro:macro name="inertial_matrix" params="m">
         <inertial>
             <mass value="${m}" />
             <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
         </inertial>
+    </xacro:macro> -->
+
+    <xacro:macro name="box_i" params="w h d">
+        <inertial>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
+        <xacro:property name="m" value="${w*h*d*P}" />
+        <mass value="${m}"/>
+        <inertia ixx="${(m/12) * (h*h + d*d)}" ixy="0.0" ixz="0.0" iyy="${(m/12) * (w*w + d*d)}" iyz="0.0" izz="${(m/12) * (w*w + h*h)}"/>
+        </inertial>
     </xacro:macro>
+
+    <xacro:macro name="cylinder_i" params="r h">
+        <inertial>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+        <xacro:property name="m" value="${(pi*r*r*h*P)}" />
+        <mass value="${m}"/>
+        <inertia ixx="${(m/12) * (3*r*r + h*h)}" ixy = "0" ixz = "0" iyy="${(m/12) * (3*r*r + h*h)}" iyz = "0" izz="${(m/2) * (r*r)}"/>
+        </inertial>
+  </xacro:macro>
 
     <!-- 底座 -->
     <link name="arm_base_link">
@@ -72,7 +91,8 @@
                 <box size="${base_l} ${base_w} ${base_h}" />
             </geometry>
         </collision>
-        <xacro:inertial_matrix m="0.1" />
+        <!-- <xacro:inertial_matrix m="0.1" /> -->
+        <xacro:box_i w="${base_w}" h="${base_h}" d="${base_l}" />
     </link>
 
     <!-- joint1 -->
@@ -98,7 +118,8 @@
                 <cylinder radius="${link1_rad}" length="${link1_len}" />
             </geometry>
         </collision>
-        <xacro:inertial_matrix m="0.1" />
+        <!-- <xacro:inertial_matrix m="0.1" /> -->
+        <xacro:cylinder_i r="${link1_rad}" h="${link1_len}" />
     </link>
 
 
@@ -117,7 +138,8 @@
                 <cylinder radius="${link2_rad}" length="${link2_len}" />
             </geometry>
         </collision>
-        <xacro:inertial_matrix m="0.1" />
+        <!-- <xacro:inertial_matrix m="0.1" /> -->
+        <xacro:cylinder_i r="${link2_rad}" h="${link2_len}" />
     </link>
 
     <!-- joint2 -->
@@ -145,7 +167,8 @@
                 <cylinder radius="${link3_rad}" length="${link3_len}" />
             </geometry>
         </collision>
-        <xacro:inertial_matrix m="0.1" />
+        <!-- <xacro:inertial_matrix m="0.1" /> -->
+        <xacro:cylinder_i r="${link3_rad}" h="${link3_len}" />
     </link>
 
     <!-- joint3 -->
@@ -174,7 +197,8 @@
                 <cylinder radius="${link4_rad}" length="${link4_len}" />
             </geometry>
         </collision>
-        <xacro:inertial_matrix m="0.1" />
+        <!-- <xacro:inertial_matrix m="0.1" /> -->
+        <xacro:cylinder_i r="${link4_rad}" h="${link4_len}" />
     </link>
     <!-- joint4 -->
     <joint name="joint4" type="revolute">
@@ -201,7 +225,8 @@
                 <cylinder radius="${link5_rad}" length="${link5_len}" />
             </geometry>
         </collision>
-        <xacro:inertial_matrix m="0.1" />
+        <!-- <xacro:inertial_matrix m="0.1" /> -->
+        <xacro:cylinder_i r="${link5_rad}" h="${link5_len}" />
     </link>
 
     <!-- joint5 -->
@@ -230,7 +255,8 @@
                 <cylinder radius="${link6_rad}" length="${link6_len}" />
             </geometry>
         </collision>
-        <xacro:inertial_matrix m="0.1" />
+        <!-- <xacro:inertial_matrix m="0.1" /> -->
+        <xacro:cylinder_i r="${link6_rad}" h="${link6_len}" />
     </link>
 
     <!-- joint6 -->
@@ -257,7 +283,8 @@
                     <box size="${gripper_l} ${gripper_w} ${gripper_h}" />
                 </geometry>
             </collision>
-            <xacro:inertial_matrix m="0.01" />
+            <!-- <xacro:inertial_matrix m="0.01" /> -->
+            <xacro:box_i d="${gripper_l}" w="${gripper_w}" h="${gripper_h}" />
         </link>
     </xacro:macro>
 

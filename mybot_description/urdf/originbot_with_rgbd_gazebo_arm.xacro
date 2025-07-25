@@ -8,6 +8,7 @@
     <xacro:include filename="$(find mybot_description)/urdf/rgbd_gazebo.xacro" />
     <xacro:include filename="$(find mybot_description)/urdf/camera_gazebo.xacro" />
     <xacro:include filename="$(find mybot_description)/urdf/lidar_gazebo.xacro" />
+    <xacro:include filename="$(find mybot_description)/urdf/imu_gazebo.xacro" />
 
     <!-- rgbd -->
     <xacro:property name="rgbd_offset_x" value="0.06" />
@@ -50,5 +51,9 @@
 
     <!-- <xacro:lidar prefix="laser" gz_visualize="false" range_min="0.5" /> -->
     <xacro:lidar prefix="laser" gz_visualize="true" range_min="${robot_radius + safety_margin}" />
+
+    <!-- IMU -->
+    <xacro:imu_sensor parent_link="base_link" />
+
 
 </robot>
